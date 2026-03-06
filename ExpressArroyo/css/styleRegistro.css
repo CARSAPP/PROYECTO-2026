@@ -1,0 +1,105 @@
+/* General */
+
+  
+  .container {
+    width: 90%;
+    max-width: 600px;
+    padding: 40px;
+    background-color: rgba(0, 0, 0, 0.8);
+    box-sizing: border-box;
+    border: 2px solid #FFD700;
+    border-radius: 10px;
+    text-align: center;
+  }
+  
+  /* Header */
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+  }
+  
+  .logo {
+    display: flex;
+    align-items: center;
+    color: #FFD700;
+  }
+  
+  .logo img {
+    width: 130px;
+    margin-right: 10px;
+  }
+  
+  .logo span {
+    font-size: 24px;
+    font-weight: bold;
+    color: #FFD700;
+  }
+  
+  .inicio {
+    color: #FFD700;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: bold;
+  }
+  
+  .inicio:hover {
+    text-decoration: underline;
+  }
+  
+  /* Main heading */
+  main h1 {
+    font-size: 40px;
+    margin-bottom: 20px;
+    font-weight: bold;
+    color: #FFD700;
+  }
+  
+  /* Formulario */
+  .formulario {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+  }
+  
+  .fila {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    gap: 10px;
+    margin-bottom: 15px;
+  }
+  
+  .fila input,
+  .fila select {
+    flex: 1;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #222;
+    border-radius: 5px;
+    background: #222;
+    color: #ccc;
+  }
+  
+  .fila input::placeholder {
+    color: #888;
+  }
+  
+  button {
+    width: 50%;
+    padding: 15px;
+    font-size: 18px;
+    font-weight: bold;
+    background-color: #FFD700;
+    color: black;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #FFD700;
+  }
+  

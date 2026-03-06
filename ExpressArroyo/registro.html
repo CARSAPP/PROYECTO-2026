@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Registro Conductor y Vehículo</title>
+  <link rel="icon" href="img/logo2.png" type="image/jpeg">
+  <link rel="stylesheet" href="css/styleRegistro.css">
+
+  <!-- Evitar caché -->
+  <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate" />
+  <meta http-equiv="Pragma"       content="no-cache" />
+  <meta http-equiv="Expires"      content="0" />
+
+  <script>
+    // 1) Función para comprobar sesión
+    function requireLogin() {
+      if (sessionStorage.getItem('loggedIn') !== 'true') {
+        window.location.replace('index.html');
+      }
+    }
+    // 2) Al cargar la página
+    requireLogin();
+    // 3) Detectar “Atrás/Adelante” desde caché
+    window.addEventListener('pageshow', function(event) {
+      const nav = performance.getEntriesByType("navigation")[0] || {};
+      if (event.persisted || nav.type === 'back_forward') {
+        requireLogin();
+      }
+    });
+    // 4) Forzar que “popstate” vuelva a requerir login
+    history.replaceState(null, '', location.href);
+    window.addEventListener('popstate', () => {
+      requireLogin();
+    });
+  </script>
+
+  <style>
+    .contenedor-registros {
+      display: flex;
+      gap: 30px;
+      justify-content: center;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      margin-top: 20px;
+    }
+
+    .registro-box {
+      width: 90%;
+      max-width: 500px;
+      background-color: rgba(0, 0, 0, 0.8);
+      border: 2px solid #FFD700;
+      border-radius: 10px;
+      padding: 40px;
+      box-sizing: border-box;
+      text-align: center;
+    }
+    .registro-box h1 {
+      font-size: 32px;
+      margin-bottom: 20px;
+      font-weight: bold;
+      color: #FFD700;
+    }
+    .fila {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      align-items: center;
+    }
+    .back-link {
+      display: inline-block;
+      color: #FFD700;
+      font-size: 20px;
+      text-decoration: none;
+      margin-right: 10px;
+      cursor: pointer;
+    }
+    .back-link:hover {
+      text-decoration: underline;
+    }
+    #finalizarRegistro {
+      display: none;
+      margin: 40px auto 20px;
+      background-color: #FFD700;
+      padding: 15px 30px;
+      font-size: 18px;
+      font-weight: bold;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    #finalizarRegistro:hover {
+      background-color: #e0c200;
+    }
+  </style>
+</head>
+<body style="
+  margin:0;
+  font-family:Arial, sans-serif;
+  background:url('img/mula3.jpg') no-repeat center center fixed;
+  background-size:cover;
+  color:white;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  height:100vh;
+">
+  <!-- Contenedor bajado con margin-top aumentado -->
+  <div class="container" style="width: 90%; max-width: 800px; margin: 200px auto 0;">
+
+    <header style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
+      <div class="logo" style="display:flex; align-items:center;">
+        <img src="img/logo3.png" alt="Travel Log" style="width:130px; margin-right:10px;">
+      </div>
+      <a href="conductores.html" class="back-link">←</a>
+    </header>
+
+    <div class="contenedor-registros">
+      <div class="registro-box">
+        <h1>Registro Conductor</h1>
+        <div id="mensajeConductor" style="color:red; font-weight:bold;"></div>
+        <form id="formConductor" class="formulario" autocomplete="off">
+          <div class="fila">
+            <input type="text" name="nombre" placeholder="NOMBRE" required autocomplete="off">
+            <input type="text" name="apellido" placeholder="APELLIDO" required autocomplete="off">
+            <input type="text" name="cc" placeholder="CC" required autocomplete="off">
+            <input type="email" name="correo" placeholder="CORREO" required autocomplete="new-email">
+            <input type="password" name="contraseña" placeholder="CONTRASEÑA" required autocomplete="new-password"
+                   pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$"
+                   title="Debe tener al menos 8 caracteres, incluir una letra, un número y un carácter especial (@$!%*#?&).">
+            <input type="text" name="placa" placeholder="PLACA DEL VEHÍCULO" required autocomplete="off">
+          </div>
+          <button type="submit" id="btnConductor">REGISTRAR</button>
+        </form>
+      </div>
+
+      <button id="finalizarRegistro" onclick="window.location.href='conductores.html'">
+        FINALIZAR REGISTRO
+      </button>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById("formConductor").addEventListener("submit", function(e) {
+      e.preventDefault();
+      fetch("php/registro.php", {
+        method: "POST",
+        body: new FormData(this)
+      })
+      .then(r => r.text())
+      .then(respuesta => {
+        // Mostrar mensaje de éxito
+        const msg = document.getElementById("mensajeConductor");
+        msg.style.color = "lightgreen";
+        msg.innerText = "Conductor registrado correctamente.";
+        // Cambiar estilo del botón
+        document.getElementById("btnConductor").style.backgroundColor = "lightgreen";
+        // Hacer visible el botón FINALIZAR
+        document.getElementById("finalizarRegistro").style.display = "inline-block";
+      })
+      .catch(err => {
+        const msg = document.getElementById("mensajeConductor");
+        msg.style.color = "salmon";
+        msg.innerText = "Error al registrar.";
+        console.error(err);
+      });
+    });
+  </script>
+</body>
+</html>

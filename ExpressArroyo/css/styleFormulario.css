@@ -1,0 +1,228 @@
+/* General */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: url("C:/xampp/htdocs/Proyecto/img/mula3.jpg") no-repeat center center fixed;
+    background-size: cover;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    width: 90%;
+    max-width: 600px;
+    padding: 40px;
+    background-color: rgba(0, 0, 0, 0.8);
+    border: 2px solid #FFD700; /* Amarillo unificado */
+    border-radius: 10px;
+    text-align: center;
+}
+
+/* Header */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    color: #FFD700; /* Amarillo para "Flota Arroyo" */
+}
+
+.logo img {
+    width: 130px;
+    height: auto;
+    margin-right: 10px;
+}
+
+.logo span {
+    font-size: 24px;
+    font-weight: bold;
+    color: #FFD700; /* Amarillo para "Flota Arroyo" */
+}
+
+.inicio {
+    color: #FFD700; /* Amarillo unificado */
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.inicio:hover {
+    text-decoration: underline;
+}
+
+/* Formulario */
+main h1 {
+    font-size: 36px;
+    margin-bottom: 20px;
+    font-weight: bold;
+    color: #FFD700; /* Amarillo para el título LOGIN */
+}
+
+.formulario {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.fila {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 10px;
+}
+
+.fila label {
+    font-size: 16px;
+    text-align: left;
+    margin-bottom: 5px;
+}
+
+.fila input,
+.fila select {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #222;
+    border-radius: 5px;
+    background: #222;
+    color: #ccc; /* Texto en gris claro */
+}
+
+button {
+    width: 45%;
+    padding: 15px;
+    font-size: 18px;
+    font-weight: bold;
+    background-color: #FFD700; /* Amarillo unificado */
+    color: black;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #FFD700;
+}
+
+/* Espaciado general entre los campos */
+.gastos-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Espaciado entre cada fila de gasto */
+    margin-bottom: 20px; /* Espacio debajo del formulario */
+}
+
+/* Espaciado dentro de cada fila */
+.gasto {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px; /* Espacio entre los inputs dentro de cada fila */
+}
+
+/* Ajustar los inputs dentro de cada gasto */
+.gasto input {
+    width: 48%;
+    padding: 12px;
+    font-size: 16px;
+    border: 1px solid #444;
+    border-radius: 5px;
+    background: #222;
+    color: #ccc;
+}
+
+/* Espaciado para los campos de nombre y fecha */
+.form-header {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px; /* Espaciado entre los campos de nombre y fecha */
+    margin-bottom: 20px; /* Espacio debajo del encabezado */
+}
+
+.form-header input {
+    width: 48%;
+    padding: 12px;
+    font-size: 16px;
+    border: 1px solid #444;
+    border-radius: 5px;
+    background: #222;
+    color: #ccc;
+}
+
+/* Estilo para el botón Guardar */
+.guardar {
+    width: 45%;
+    padding: 15px;
+    font-size: 18px;
+    font-weight: bold;
+    background-color: #28a745; /* Verde */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 15px; /* Espacio entre los botones superiores */
+}
+
+.guardar:hover {
+    background-color: #218838; /* Verde más oscuro al pasar el mouse */
+}
+
+/* Contenedor del total */
+.total-container {
+    display: flex;
+    justify-content: flex-end; /* Alinea el contenido a la derecha */
+    align-items: center;
+    padding: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    border-top: 2px solid #FFD700; /* Línea superior para separar */
+    margin-top: 10px; /* Espacio superior */
+}
+
+/* Etiqueta "Total" */
+.total-container label {
+    color: #FFD700;
+    margin-right: 10px; /* Espacio entre el texto "Total" y el input */
+}
+
+/* Input donde se muestra el total */
+#totalGastos {
+    width: 120px;
+    padding: 10px;
+    font-size: 16px;
+    text-align: right;
+    border: 1px solid #FFD700;
+    border-radius: 5px;
+    background: #222;
+    color: #FFD700;
+}
+
+/* Flecha de retroceso */
+.nav-container {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Espacio uniforme */
+}
+
+/* Estilo de la flecha */
+.back-arrow {
+    color: #FFD700;
+    font-size: 18px;
+    text-decoration: none;
+    font-weight: bold;
+    margin-right: 2px;
+    transition: color 0.3s;
+}
+
+.back-arrow:hover {
+    color: #FFD700;
+    text-decoration: underline;
+}

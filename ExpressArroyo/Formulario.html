@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Formulario</title>
+  <link rel="icon" href="img/logo2.png" type="image/jpeg">
+  <style>
+    /* General */
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: url("img/mula3.jpg") no-repeat center center fixed;
+      background-size: cover;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      padding: 20px; /* un poco de espacio lateral */
+      box-sizing: border-box;
+    }
+
+    .container {
+      width: 95%;
+      max-width: 800px;  /* antes 600px */
+      padding: 40px;
+      background-color: rgba(0, 0, 0, 0.8);
+      border: 2px solid #FFD700;
+      border-radius: 10px;
+      text-align: center;
+      box-sizing: border-box;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 40px;
+    }
+
+    .logo img {
+      width: 130px;
+      height: auto;
+    }
+
+    .back-arrow {
+      color: #FFD700;
+      font-size: 18px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s;
+    }
+    .back-arrow:hover {
+      text-decoration: underline;
+    }
+
+    main h1 {
+      font-size: 36px;
+      margin-bottom: 20px;
+      font-weight: bold;
+      color: #FFD700;
+    }
+
+    .form-header {
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+      margin-bottom: 20px;
+    }
+    .form-header input[type="text"] {
+      width: 30%;
+      padding: 12px;
+      font-size: 16px;
+      border: 1px solid #444;
+      border-radius: 5px;
+      background: #222;
+      color: #ccc;
+    }
+    .form-header .fecha-container {
+      width: 48%;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .fecha-container label {
+      color: #fff;
+      font-weight: normal;
+      margin: 0;
+    }
+    .form-header .fecha-container input {
+      flex: 1;
+      padding: 12px;
+      font-size: 16px;
+      border: 1px solid #444;
+      border-radius: 5px;
+      background: #222;
+      color: #ccc;
+    }
+
+    .gastos-container {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      margin-bottom: 20px;
+    }
+
+    .gasto {
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+      align-items: center;
+    }
+
+    .tipo-gasto-select,
+    .gasto input,
+    .gasto select {
+      padding: 12px;
+      font-size: 16px;
+      border: 1px solid #444;
+      border-radius: 5px;
+      background: #222;
+      color: #ccc;
+    }
+    .tipo-gasto-select {
+      width: 40%;
+    }
+    .tipo-gasto-custom {
+      width: 40%;
+      display: none;
+    }
+    .valor-gasto {
+      width: 40%;
+    }
+
+    button {
+      width: 45%;
+      padding: 15px;
+      font-size: 18px;
+      font-weight: bold;
+      background-color: #FFD700;
+      color: black;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+    button:hover {
+      background-color: #FFD700;
+    }
+    .guardar {
+      background-color: #28a745;
+      color: white;
+      width: 100%;
+      margin-top: 20px;
+    }
+    .guardar:hover {
+      background-color: #218838;
+    }
+
+    .total-container {
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+      flex-wrap: wrap;
+      margin-top: 15px;
+    }
+
+    .total-container > div {
+      flex: 1;
+      min-width: 30%;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .total-container label {
+      color: #FFD700;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    .campo-resultado {
+      width: 100%;
+      padding: 10px;
+      font-size: 16px;
+      text-align: right;
+      border: 1px solid #FFD700;
+      border-radius: 5px;
+      background: #111;
+      color: #FFD700;
+    }
+  </style>
+
+  <!-- PROTECCIÓN DE SESIÓN -->
+  <script>
+    // 1) Si no está logueado, vamos al login
+    if (sessionStorage.getItem('loggedIn') !== 'true') {
+      window.location.replace('index.html');
+    }
+    // 2) En back/forward desde caché, validar de nuevo
+    window.addEventListener('pageshow', function(event) {
+      const nav = performance.getEntriesByType("navigation")[0] || {};
+      if (event.persisted || nav.type === 'back_forward') {
+        if (sessionStorage.getItem('loggedIn') !== 'true') {
+          window.location.replace('index.html');
+        }
+      }
+    });
+    // 3) Reemplazar el estado actual y forzar popstate
+    history.replaceState(null, '', location.href);
+    window.addEventListener('popstate', () => {
+      if (sessionStorage.getItem('loggedIn') === 'true') {
+        window.location.href = 'BienvenidoAdmin.html';
+      } else {
+        window.location.replace('index.html');
+      }
+    });
+  </script>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="logo">
+        <img src="img/logo3.png" alt="Travel Log">
+      </div>
+      <a href="BienvenidoAdmin.html" class="back-arrow">←</a>
+    </header>
+
+    <main>
+      <h1>Formulario</h1>
+      <form action="php/guardar_formulario.php" method="POST">
+        <div class="form-header">
+          <input type="text" name="origen_viaje" placeholder="Origen viaje" required>
+          <input type="text" name="destino_viaje" placeholder="Destino viaje" required>
+          <div class="fecha-container">
+            <label for="fecha_formulario">Fecha de viaje</label>
+            <input type="date" id="fecha_formulario" name="fecha_formulario" required>
+          </div>
+        </div>
+
+        <div class="gastos-container" id="gastosContainer">
+          <div class="gasto">
+            <label for="flete">Flete:</label>
+            <input type="number" id="flete" name="flete" placeholder="Valor en pesos" step="1" min="0" oninput="calcularTotal()" required>
+            <label for="porcentaje">Porcentaje Ganancia Conductor:</label>
+            <select id="porcentaje" name="porcentaje" onchange="calcularTotal()" required>
+              <option value="0">0%</option>
+              <option value="10">10%</option>
+              <option value="20">20%</option>
+              <option value="30">30%</option>
+              <option value="40">40%</option>
+              <option value="50">50%</option>
+              <option value="60">60%</option>
+              <option value="70">70%</option>
+              <option value="80">80%</option>
+              <option value="90">90%</option>
+              <option value="100">100%</option>
+            </select>
+          </div>
+
+          <div class="gasto">
+            <select class="tipo-gasto-select">
+              <option value="" disabled selected>Tipo de gasto</option>
+              <option value="Cargue">Cargue</option>
+              <option value="Descargue">Descargue</option>
+              <option value="Peajes">Peajes</option>
+              <option value="Combustible">Combustible</option>
+              <option value="Hospedaje">Hospedaje</option>
+              <option value="Alimentacion">Alimentación</option>
+              <option value="Otros">Otros</option>
+            </select>
+            <input type="text" class="tipo-gasto-custom" placeholder="Especifique gasto">
+            <input type="hidden" name="tipo_gasto[]" class="tipo-gasto-hidden">
+            <input type="number" name="valor_gasto[]" placeholder="Valor en pesos" class="valor-gasto" step="1" min="0" oninput="calcularTotal()" required>
+          </div>
+
+          <!-- ... resto de filas de gastos ... -->
+
+          <div class="total-container">
+            <div>
+              <label>Total Gastos:</label>
+              <input type="text" id="totalGastos" class="campo-resultado" name="total_gastos" readonly>
+            </div>
+            <div>
+              <label>Sobrante Flete:</label>
+              <input type="text" id="sobranteFlete" class="campo-resultado" name="sobrante_flete" readonly>
+            </div>
+            <div>
+              <label>Ganancia Conductor:</label>
+              <input type="text" id="gananciaConductor" class="campo-resultado" name="ganancia_conductor" readonly>
+            </div>
+          </div>
+
+          <button type="button" id="agregarGasto">Agregar más gastos</button>
+          <button type="button" id="eliminarGasto">Eliminar Gasto</button>
+          <button type="submit" class="guardar">Guardar</button>
+        </div>
+      </form>
+    </main>
+  </div>
+
+  <script>
+    // Funciones para manejar los gastos dinámicos y los cálculos
+    function setupGastoRow(row) {
+      const sel = row.querySelector('.tipo-gasto-select');
+      const custom = row.querySelector('.tipo-gasto-custom');
+      const hidden = row.querySelector('.tipo-gasto-hidden');
+      sel.addEventListener('change', () => {
+        if (sel.value === 'Otros') {
+          custom.style.display = 'block';
+          custom.required = true;
+          hidden.value = '';
+        } else {
+          custom.style.display = 'none';
+          custom.required = false;
+          hidden.value = sel.value;
+        }
+      });
+      custom.addEventListener('input', () => {
+        hidden.value = custom.value;
+      });
+    }
+
+    // Inicializar las filas existentes
+    document.querySelectorAll('.gasto').forEach(row => {
+      if (row.querySelector('.tipo-gasto-select')) setupGastoRow(row);
+    });
+
+    // Cálculo de totales
+    function calcularTotal() {
+      let totalGastos = 0;
+      document.querySelectorAll(".valor-gasto").forEach(input => {
+        totalGastos += Math.trunc(input.valueAsNumber || 0);
+      });
+      const flete = Math.trunc(document.getElementById("flete").valueAsNumber || 0);
+      const porcentaje = Number(document.getElementById("porcentaje").value)/100;
+      const ganancia = Math.trunc(flete*porcentaje);
+      const sobrante = Math.trunc(flete - totalGastos);
+      document.getElementById("totalGastos").value = totalGastos;
+      document.getElementById("sobranteFlete").value = sobrante;
+      document.getElementById("gananciaConductor").value = ganancia;
+    }
+    document.querySelectorAll("#flete, .valor-gasto, #porcentaje")
+      .forEach(el => el.addEventListener("input", calcularTotal));
+
+    // Agregar y eliminar filas de gasto
+    document.getElementById("agregarGasto").addEventListener("click", () => {
+      const container = document.getElementById("gastosContainer");
+      const div = document.createElement("div");
+      div.className = "gasto";
+      div.innerHTML = `
+        <select class="tipo-gasto-select">
+          <option value="" disabled selected>Tipo de gasto</option>
+          <option value="Cargue">Cargue</option>
+          <option value="Descargue">Descargue</option>
+          <option value="Peajes">Peajes</option>
+          <option value="Combustible">Combustible</option>
+          <option value="Hospedaje">Hospedaje</option>
+          <option value="Alimentacion">Alimentación</option>
+          <option value="Otros">Otros</option>
+        </select>
+        <input type="text" class="tipo-gasto-custom" placeholder="Especifique gasto">
+        <input type="hidden" name="tipo_gasto[]" class="tipo-gasto-hidden">
+        <input type="number" name="valor_gasto[]" placeholder="Valor en pesos" class="valor-gasto" step="1" min="0" oninput="calcularTotal()" required>
+      `;
+      container.insertBefore(div, container.querySelector('.total-container'));
+      setupGastoRow(div);
+    });
+
+    document.getElementById("eliminarGasto").addEventListener("click", () => {
+      const gastos = document.querySelectorAll("#gastosContainer .gasto");
+      if (gastos.length > 3) {
+        gastos[gastos.length - 1].remove();
+        calcularTotal();
+      }
+    });
+  </script>
+</body>
+</html>
