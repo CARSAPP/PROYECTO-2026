@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Login</title>
+  <link rel="icon" href="img/logo2.png" type="image/jpeg">
+  <link rel="stylesheet" href="css/styleLogin.css">
+</head>
+<body style="
+margin: 0;
+font-family: Arial, sans-serif;
+background: url('img/mula3.jpg') no-repeat center center fixed;
+background-size: cover;
+color: white;
+display: flex;
+justify-content: center;
+align-items: center;
+height: 100vh;
+"
+>
+  <div class="container">
+    <header>
+      <div class="logo">
+        
+        <img src="img/logo3.png" alt="Travel Log">
+        <span></span>
+      </div>
+      <a href="index.html" class="inicio">INICIO</a>
+    </header>
+
+    <main>
+      <h1>LOGIN</h1>
+      <div id="mensaje" style="color: red; font-weight: bold;"></div>
+      <form class="formulario" action="php/login.php" method="POST">
+        <div class="fila">
+          <select name="rol" id="rol" required>
+            <option value="administrador">ADMINISTRADOR</option>
+            <option value="conductor">CONDUCTOR</option>
+          </select>
+        </div>
+        <div class="fila">
+          <input type="email" name="correo" placeholder="CORREO" required>
+        </div>
+        <div class="fila">
+          <input type="password" name="contraseña" placeholder="CONTRASEÑA" required>
+        </div>
+        <button type="submit">LOGIN</button>
+      </form>
+    </main>
+  </div>
+
+  <!-- Script para mostrar mensaje de error si viene en la URL -->
+  <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const errorMsg = urlParams.get('error');
+    if (errorMsg) {
+      document.getElementById("mensaje").textContent = errorMsg;
+    }
+  </script>
+</body>
+</html>

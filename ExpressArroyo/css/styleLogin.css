@@ -1,0 +1,115 @@
+/* General */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: url("C:/xampp/htdocs/Proyecto/img/mula3.jpg") no-repeat center center fixed;
+    background-size: cover;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    width: 90%;
+    max-width: 600px;
+    padding: 40px;
+    background-color: rgba(0, 0, 0, 0.8);
+    box-sizing: border-box;
+    border: 2px solid #FFD700; /* Amarillo unificado */
+    border-radius: 10px;
+    text-align: center;
+}
+
+/* Header */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    color: #FFD700; /* Amarillo para "Flota Arroyo" */
+}
+
+.logo img {
+    width: 130px;
+    height: auto;
+    margin-right: 10px;
+}
+
+.logo span {
+    font-size: 24px;
+    font-weight: bold;
+    color: #FFD700; /* Amarillo para "Flota Arroyo" */
+}
+
+.inicio {
+    color: #FFD700; /* Amarillo unificado */
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.inicio:hover {
+    text-decoration: underline;
+}
+
+/* Formulario */
+main h1 {
+    font-size: 36px;
+    margin-bottom: 20px;
+    font-weight: bold;
+    color: #FFD700; /* Amarillo para el título LOGIN */
+}
+
+.formulario {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.fila {
+    display: flex;
+    flex-direction: column;
+    width: 80%; /* Reducido el ancho de los campos */
+    gap: 10px;
+}
+
+.fila label {
+    font-size: 16px;
+    text-align: left;
+    margin-bottom: 5px;
+}
+
+.fila input,
+.fila select {
+    width: 100%; /* Asegura que todos los campos tengan el mismo ancho */
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #222;
+    border-radius: 5px;
+    background: #222;
+    color: #ccc; /* Texto en gris claro */
+}
+
+button {
+    width: 45%;
+    padding: 15px;
+    font-size: 18px;
+    font-weight: bold;
+    background-color: #FFD700; /* Amarillo unificado */
+    color: black;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #FFD700;;
+}

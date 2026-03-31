@@ -1,0 +1,156 @@
+/* General */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: url("img/mula3.jpg") no-repeat center center fixed;
+    background-size: cover;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Contenedor principal */
+.container {
+    width: 90%;
+    max-width: 600px;
+    padding: 40px;
+    background-color: rgba(0, 0, 0, 0.8);
+    border: 2px solid #FFD700;
+    border-radius: 10px;
+    text-align: center;
+}
+
+/* Header */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+/* Logo */
+.logo img {
+    width: 130px;
+    height: auto;
+}
+
+/* Nav container */
+.nav-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Flecha de retroceso */
+.back-arrow {
+    color: #FFD700;
+    font-size: 20px;
+    text-decoration: none;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+.back-arrow:hover {
+    text-decoration: underline;
+}
+
+/* Título principal */
+main h1 {
+    font-size: 32px;
+    margin-bottom: 15px;
+    font-weight: bold;
+    color: #FFD700;
+}
+
+/* ------------------------------- */
+/* Contenedor de consulta de viajes */
+/* ------------------------------- */
+/* --- Grid para label + input --- */
+.consulta-recuadro .input-group {
+    display: grid;
+    grid-template-columns: 70px 1fr;  /* Label ocupa 70px, input el resto */
+    column-gap: 8px;                  /* Menos espacio entre columnas */
+    align-items: center;
+    width: 100%;
+    max-width: 350px;                 /* Ajusta según tu gusto */
+    margin: 0 auto 15px;             /* Centra y añade margin-bottom */
+}
+
+/* Label de placa */
+.consulta-recuadro .input-group label {
+    color: #FFD700;
+    font-weight: bold;
+    text-align: right;
+    white-space: nowrap;
+}
+
+/* Campo de texto */
+.consulta-recuadro .input-group input {
+    width: 100%;
+    padding: 8px 10px;
+    background: #111;
+    color: #fff;
+    border: 1px solid #FFD700;
+    border-radius: 4px;
+    font-size: 1rem;
+    text-transform: uppercase;
+}
+
+/* Botón de consulta */
+.boton-consulta {
+    padding: 10px 18px;
+    font-size: 16px;
+    font-weight: bold;
+    background-color: #FFD700;
+    color: #000;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.2s;
+    margin-top: 5px;
+}
+.boton-consulta:hover {
+    background-color: #e6c200;
+}
+
+/* Scroll para resultados */
+#resultadosViajes {
+    max-height: 300px;
+    overflow-y: auto;
+    padding: 10px;
+    background: rgba(0,0,0,0.6);
+    border: 1px solid #FFD700;
+    border-radius: 5px;
+}
+
+/* Botón de eliminar (viaje o gasto) */
+.btn-delete, .btn-delete-viaje {
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    padding: 4px 8px;
+    border-radius: 3px;
+    font-size: 12px;
+    cursor: pointer;
+    margin-top: 8px;
+}
+.btn-delete:hover, .btn-delete-viaje:hover {
+    background-color: #c0392b;
+}
+
+/* Responsive */
+@media screen and (max-width: 600px) {
+    main h1 { font-size: 28px; }
+    .consulta-recuadro { padding: 10px; }
+    .consulta-recuadro h2 { font-size: 18px; }
+    .consulta-recuadro .input-group {
+        grid-template-columns: 1fr; /* en móvil label encima */
+        row-gap: 8px;
+    }
+    .consulta-recuadro .input-group label {
+        text-align: left;
+    }
+    .boton-consulta { font-size: 14px; padding: 8px 14px; }
+}

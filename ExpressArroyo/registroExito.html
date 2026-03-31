@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>¡Registro Exitoso!</title>
+  <link rel="icon" href="img/logo2.png" type="image/jpeg">
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: url('img/mula3.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: #555;
+    }
+
+    /* ENCABEZADO estilo exacto al de index con franja gris inferior */
+    header {
+      background-color: black;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 50px;
+      border-bottom: 4px solid #777;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+    }
+
+    .logo img {
+      width: 100px;
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      gap: 25px;
+      align-items: center;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: white;
+      font-weight: bold;
+      font-size: 14px;
+      position: relative;
+    }
+
+    nav ul li a.active {
+      color: #FFD700;
+    }
+
+    nav ul li a.active::after {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 2px;
+      background-color: #FFD700;
+      bottom: -5px;
+      left: 0;
+    }
+
+    .button {
+      border: 1px solid #FFD700;
+      color: #FFD700;
+      padding: 8px 15px;
+      border-radius: 30px;
+      font-weight: bold;
+      font-size: 14px;
+      transition: 0.3s;
+    }
+
+    .button:hover {
+      background-color: #FFD700;
+      color: black;
+    }
+
+    /* Contenido principal */
+    main {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: calc(100vh - 100px);
+      padding: 40px 20px;
+    }
+
+    .exito-container {
+  background-color: rgba(0, 0, 0, 0.85);
+  color: #ccc;
+  max-width: 600px;
+  margin: 80px auto;
+  padding: 40px;
+  border-radius: 15px;
+  border: 2px solid #FFD700; /* ← borde amarillo */
+  text-align: center;
+}
+
+
+    .exito-container h1 {
+      font-size: 36px;
+      margin-bottom: 20px;
+      color: #FFD700;
+    }
+
+    .exito-container p {
+      font-size: 18px;
+      line-height: 1.6;
+      color: #ccc;
+      margin-bottom: 30px;
+    }
+
+    .exito-container img {
+      width: 100%;
+      max-width: 350px;
+      margin: 20px auto;
+      border-radius: 10px;
+      display: block;
+    }
+
+    .btn-iniciar {
+      background-color: #FFD700;
+      color: black;
+      padding: 12px 25px;
+      font-size: 18px;
+      font-weight: bold;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .btn-iniciar:hover {
+      background-color: #e0c200;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Cabecera estilo igual a index -->
+  <header>
+    <div class="logo">
+      <img src="img/logo3.png" alt="Logo de Express Arroyo">
+    </div>
+    <nav>
+      <ul>
+        <li><a href="index.html" class="active">INICIO</a></li>
+        <li><a href="#">CONTACTO</a></li>
+        <li><a href="login.html" class="button">INICIAR SESIÓN</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Contenido principal -->
+  <main>
+    <div class="exito-container">
+      <h1>¡Registro Exitoso!</h1>
+      <img src="img/sistema.jpeg" alt="Imagen de registro exitoso">
+      <p>
+        <strong>Gracias por registrarte en Express Arroyo.</strong><br>
+        Ahora podrás acceder a nuestro <strong>sistema de control de gastos</strong> para conductores,
+        pensado para facilitar el seguimiento de tus viajes, gastos de combustible,
+        mantenimientos y cualquier otro costo asociado a tu vehículo.
+        <br><br>
+        <strong>Optimiza tu operación de transporte</strong> y mantén todo en orden con facilidad.
+      </p>
+      <button class="btn-iniciar" onclick="window.location.href='login.html'">
+        Iniciar Sesión
+      </button>
+    </div>
+  </main>
+
+</body>
+</html>

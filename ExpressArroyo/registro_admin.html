@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Registro Administrador</title>
+  <link rel="icon" href="img/logo2.png" type="image/jpeg">
+  <link rel="stylesheet" href="css/styleRegistro.css">
+
+  <!-- Evitar caché -->
+  <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate" />
+  <meta http-equiv="Pragma"       content="no-cache" />
+  <meta http-equiv="Expires"      content="0" />
+
+  <script>
+    // 1) Función para comprobar si sigue logueado
+    function requireLogin() {
+      if (sessionStorage.getItem('loggedIn') !== 'true') {
+        window.location.replace('index.html');
+      }
+    }
+    // 2) Al cargar la página
+    requireLogin();
+    // 3) Detectar “Atrás/Adelante” desde caché
+    window.addEventListener('pageshow', function(event) {
+      const nav = performance.getEntriesByType("navigation")[0] || {};
+      if (event.persisted || nav.type === 'back_forward') {
+        requireLogin();
+      }
+    });
+    // 4) Forzar que “popstate” siempre revalide
+    history.replaceState(null, '', location.href);
+    window.addEventListener('popstate', () => {
+      requireLogin();
+    });
+  </script>
+
+  <style>
+    .contenedor-registros {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 30px;
+      margin-top: 20px;
+    }
+    .registro-box {
+      width: 90%;
+      max-width: 500px;
+      background-color: rgba(0, 0, 0, 0.8);
+      border: 2px solid #FFD700;
+      border-radius: 10px;
+      padding: 40px;
+      box-sizing: border-box;
+      text-align: center;
+    }
+    .registro-box h1 {
+      font-size: 32px;
+      margin-bottom: 20px;
+      font-weight: bold;
+      color: #FFD700;
+    }
+    .fila {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      align-items: center;
+    }
+    .back-link {
+      color: #FFD700;
+      font-size: 20px;
+      text-decoration: none;
+      cursor: pointer;
+      transition: color .3s;
+    }
+    .back-link:hover {
+      text-decoration: underline;
+    }
+    #btnConductor {
+      margin-top: 20px;
+      padding: 12px 20px;
+      background: #FFD700;
+      border: none;
+      border-radius: 5px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    #btnConductor:hover {
+      background: #e0c200;
+    }
+  </style>
+</head>
+<body style="
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: url('img/mula3.jpg') no-repeat center center fixed;
+  background-size: cover;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+">
+  <div class="container" style="
+    width: 80%;
+    max-width: 600px;
+    margin: 0 auto;
+  ">
+    <header style="
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    ">
+      <div class="logo" style="display:flex; align-items:center;">
+        <img src="img/logo3.png" alt="Logo" style="width:130px; margin-right:10px;">
+      </div>
+      <a href="conductores.html" class="back-link">←</a>
+    </header>
+
+    <div class="contenedor-registros">
+      <div class="registro-box">
+        <h1>Registro Administrador</h1>
+        <form id="formConductor" action="php/registro_admin.php" method="POST" autocomplete="off">
+          <div class="fila">
+            <input type="text"    name="nombre"     placeholder="NOMBRE"      autocomplete="off" required>
+            <input type="text"    name="apellido"   placeholder="APELLIDO"    autocomplete="off" required>
+            <input type="text"    name="cedula"     placeholder="CÉDULA"      autocomplete="off" required>
+            <input type="email"   name="correo"     placeholder="CORREO"      autocomplete="off" required>
+            <input type="password"name="contrasena" placeholder="CONTRASEÑA" autocomplete="new-password" required>
+            <button type="submit" id="btnConductor">REGISTRAR</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

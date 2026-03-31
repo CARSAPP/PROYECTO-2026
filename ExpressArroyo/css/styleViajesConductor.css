@@ -1,0 +1,82 @@
+/* General */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: url("C:/xampp/htdocs/Proyecto/img/mula3.jpg") no-repeat center center fixed;
+    background-size: cover;
+    color: #FFD700;;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    width: 90%;
+    max-width: 600px;
+    padding: 40px;
+    background-color: rgba(0, 0, 0, 0.8);
+    border: 2px solid #FFD700; /* Amarillo unificado */
+    border-radius: 10px;
+    text-align: center;
+}
+
+/* Header */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    color: #FFD700; /* Amarillo para "Flota Arroyo" */
+}
+
+.logo img {
+    width: 130px;
+    height: auto;
+    margin-right: 10px;
+}
+
+.logo span {
+    font-size: 24px;
+    font-weight: bold;
+    color: #FFD700; /* Amarillo para "Flota Arroyo" */
+}
+
+.inicio {
+    color: #FFD700; /* Amarillo unificado */
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.inicio:hover {
+    text-decoration: underline;
+}
+
+/* Formulario y Secciones */
+main h1 {
+    font-size: 36px;
+    margin-bottom: 20px;
+    font-weight: bold;
+    color: #FFD700; /* Amarillo para el título */
+}
+
+.nombre-usuario {
+    color: #FFD700;
+}
+
+/* Recuadro para Consulta de Viajes */
+.consulta-recuadro {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.1); /* Fondo semi-transparente */
+    border: 2px solid #FFD700; /* Borde amarillo */
+    border-radius: 10px;
+    text-align: center;
+}
+

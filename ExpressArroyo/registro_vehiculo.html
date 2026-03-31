@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Registro Vehículo</title>
+  <link rel="icon" href="img/logo2.png" type="image/jpeg">
+  <link rel="stylesheet" href="css/styleRegistro.css">
+
+  <!-- Evitar caché -->
+  <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate" />
+  <meta http-equiv="Pragma"       content="no-cache" />
+  <meta http-equiv="Expires"      content="0" />
+
+  <script>
+    // Protección de sesión
+    function requireLogin() {
+      if (sessionStorage.getItem('loggedIn') !== 'true') {
+        window.location.replace('index.html');
+      }
+    }
+    // Al cargar la página
+    requireLogin();
+    // Detectar “Atrás/Adelante” desde caché
+    window.addEventListener('pageshow', function(event) {
+      const nav = performance.getEntriesByType("navigation")[0] || {};
+      if (event.persisted || nav.type === 'back_forward') {
+        requireLogin();
+      }
+    });
+    // Forzar revalidación en popstate
+    history.replaceState(null, '', location.href);
+    window.addEventListener('popstate', () => {
+      requireLogin();
+    });
+  </script>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: url('img/mula3.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+    }
+    .container {
+      width: 80%;
+      max-width: 900px;
+      margin-top: 20px;
+    }
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+    .logo img {
+      width: 130px;
+    }
+    .back-link {
+      color: #FFD700;
+      font-size: 20px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .back-link:hover {
+      text-decoration: underline;
+    }
+    .contenedor-registros {
+      display: flex;
+      gap: 30px;
+      justify-content: center;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      margin-top: 20px;
+    }
+    .registro-box {
+      width: 100%;
+      max-width: 400px;
+      background-color: rgba(0, 0, 0, 0.8);
+      border: 2px solid #FFD700;
+      border-radius: 10px;
+      padding: 40px;
+      box-sizing: border-box;
+      text-align: center;
+    }
+    .registro-box h1 {
+      font-size: 32px;
+      margin-bottom: 20px;
+      color: #FFD700;
+    }
+    .fila {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      align-items: center;
+    }
+    .fila input,
+    .fila select {
+      width: 100%;
+      padding: 10px;
+      font-size: 16px;
+      border: 1px solid #444;
+      border-radius: 5px;
+      background: #222;
+      color: #fff;
+      box-sizing: border-box;
+    }
+    #btnVehiculo {
+      background-color: #FFD700;
+      color: black;
+      padding: 12px 30px;
+      font-size: 18px;
+      font-weight: bold;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      margin-top: 20px;
+    }
+    #btnVehiculo:hover {
+      background-color: #e6c200;
+    }
+    #mensajeVehiculo {
+      margin-bottom: 20px;
+      font-weight: bold;
+    }
+    #finalizarRegistro {
+      display: none;
+      margin: 40px auto 0;
+      background-color: #FFD700;
+      padding: 15px 30px;
+      font-size: 18px;
+      font-weight: bold;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    #finalizarRegistro:hover {
+      background-color: #e0c200;
+    }
+    @media screen and (max-width: 600px) {
+      .registro-box {
+        max-width: 90%;
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="logo">
+        <img src="img/logo3.png" alt="Travel Log">
+      </div>
+      <a href="conductores.html" class="back-link">←</a>
+    </header>
+
+    <div class="contenedor-registros">
+      <div class="registro-box">
+        <h1>Registro Vehículo</h1>
+        <div id="mensajeVehiculo"></div>
+        <form id="formVehiculo" autocomplete="off">
+          <div class="fila">
+            <input type="text"   name="placa"            placeholder="PLACA"              required>
+            <input type="text"   name="marca"            placeholder="MARCA"              required>
+            <input type="text"   name="modelo"           placeholder="MODELO"             required>
+            <input type="text"   name="cilindrada"       placeholder="CILINDRADA"         required>
+            <input type="text"   name="color"            placeholder="COLOR"              required>
+
+            <select name="servicio" required>
+              <option value="" disabled selected>Servicio</option>
+              <option value="Particular">Particular</option>
+              <option value="Publico">Público</option>
+            </select>
+
+            <select name="clase_vehiculo" required>
+              <option value="" disabled selected>Clase de vehículo</option>
+              <option value="Camion">Camión</option>
+              <option value="Furgon">Furgón</option>
+            </select>
+
+            <select name="tipo_carroceria" required>
+              <option value="" disabled selected>Tipo carrocería</option>
+              <option value="Estaca">Tipo Estaca</option>
+            </select>
+
+            <select name="combustible" required>
+              <option value="" disabled selected>Combustible</option>
+              <option value="Diesel">Diésel</option>
+              <option value="Gasolina">Gasolina</option>
+            </select>
+
+            <input type="number" name="capacidad"        placeholder="CAPACIDAD"          required>
+            <input type="text"   name="numero_motor"     placeholder="NÚMERO DE MOTOR"     required>
+            <input type="text"   name="numero_chasis"    placeholder="NÚMERO DE CHASIS"    required>
+            <input type="text"   name="propietario"      placeholder="PROPIETARIO"         required>
+            <input type="text"   name="identificacion"   placeholder="IDENTIFICACIÓN"      required>
+          </div>
+          <button type="submit" id="btnVehiculo">REGISTRAR</button>
+        </form>
+      </div>
+    </div>
+
+    <button id="finalizarRegistro"
+            onclick="window.location.href='conductores.html'">
+      FINALIZAR REGISTRO
+    </button>
+  </div>
+
+  <script>
+    let vehiculoRegistrado = false;
+
+    document.getElementById("formVehiculo")
+      .addEventListener("submit", function(e) {
+        e.preventDefault();
+        fetch("php/registro_vehiculo.php", {
+          method: "POST",
+          body: new FormData(this)
+        })
+        .then(r => r.text())
+        .then(texto => {
+          document.getElementById("mensajeVehiculo").style.color = "lightgreen";
+          document.getElementById("mensajeVehiculo").innerText = "Vehículo registrado correctamente.";
+          document.getElementById("btnVehiculo").style.backgroundColor = "lightgreen";
+          vehiculoRegistrado = true;
+          mostrarFinalizar();
+        })
+        .catch(err => {
+          document.getElementById("mensajeVehiculo").style.color = "salmon";
+          document.getElementById("mensajeVehiculo").innerText = "Error al registrar el vehículo.";
+          console.error(err);
+        });
+      });
+
+    function mostrarFinalizar() {
+      if (vehiculoRegistrado) {
+        document.getElementById("finalizarRegistro").style.display = "block";
+      }
+    }
+  </script>
+</body>
+</html>
